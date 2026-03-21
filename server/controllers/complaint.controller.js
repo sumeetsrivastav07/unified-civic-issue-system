@@ -1,14 +1,13 @@
+import AppError from "../utils/AppError.js";
 export const createComplaint = async (req, res, next) => {
+
     try {
         const { title, description } = req.body;
 
         // Basic validation (temporary)
-        if (!title || !description) {
-            return res.status(400).json({
-                success: false,
-                message: "All fields are required"
-            });
-        }
+       if (!title || !description) {
+    return next(new AppError("All fields are required", 400));
+}
 
         // Temporary response (DB not added yet)
         const complaint = {
