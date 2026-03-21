@@ -1,5 +1,10 @@
 import express from "express";
-import { getRootMessage } from "../controllers/rootController.js";
+import {
+  getRootMessage,
+  handleTestPost
+} from "../controllers/rootController.js";
+
+import { createComplaint } from "../controllers/complaint.controller.js";
 
 const router = express.Router();
 
@@ -7,13 +12,9 @@ const router = express.Router();
 router.get("/", getRootMessage);
 
 // POST test route (temporary testing purpose)
-router.post("/test", (req, res) => {
-  console.log("Body:", req.body);
+router.post("/test", handleTestPost);
 
-  res.json({
-    message: "Data received successfully",
-    data: req.body,
-  });
-});
+// NEW: complaint route
+router.post("/complaints", createComplaint);
 
 export default router;
