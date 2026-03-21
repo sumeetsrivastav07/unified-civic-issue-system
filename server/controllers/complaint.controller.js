@@ -1,28 +1,24 @@
 import AppError from "../utils/AppError.js";
-export const createComplaint = async (req, res, next) => {
+import asyncHandler from "../utils/asyncHandler.js";
 
-    try {
-        const { title, description } = req.body;
+export const createComplaint = asyncHandler(async (req, res, next) => {
 
-        // Basic validation (temporary)
-       if (!title || !description) {
-    return next(new AppError("All fields are required", 400));
-}
+    const { title, description } = req.body;
 
-        // Temporary response (DB not added yet)
-        const complaint = {
-            id: Date.now(),
-            title,
-            description
-        };
-
-        res.status(201).json({
-            success: true,
-            message: "Complaint created successfully",
-            data: complaint
-        });
-
-    } catch (error) {
-        next(error); // VERY IMPORTANT
+    if (!title || !description) {
+        return next(new AppError("All fields are required", 400));
     }
-};
+
+    const complaint = {
+        id: Date.now(),
+        title,
+        description
+    };
+
+    res.status(201).json({
+        success: true,
+        message: "Complaint created successfully",
+        data: complaint
+    });
+
+});

@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import rootRoutes from "./routes/rootRoutes.js";
 import { requestLogger } from "./middleware/requestLogger.js";
-import { errorHandler } from "./middleware/errorHandler.js";
+import  errorHandler from "./middleware/errorHandler.js";
 
 dotenv.config();
 
