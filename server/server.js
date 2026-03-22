@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import rootRoutes from "./routes/rootRoutes.js";
 import { requestLogger } from "./middleware/requestLogger.js";
 import  errorHandler from "./middleware/errorHandler.js";
-
+import connectDB from "./config/db.js";
 dotenv.config();
 
 const app = express();
@@ -18,7 +18,7 @@ app.use("/", rootRoutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-
+//connectDB();
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

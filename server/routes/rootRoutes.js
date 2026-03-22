@@ -6,31 +6,18 @@ import {
   handleTestPost
 } from "../controllers/rootController.js";
 
-import { createComplaint } from "../controllers/complaint.controller.js";
-
-// Middleware
-import validate from "../middleware/validate.js";
-
-// Validation Schemas
-import { createComplaintSchema } from "../validations/complaint.validation.js";
+// Routes
+import complaintRoutes from "./complaint.routes.js";
 
 const router = express.Router();
 
-
-// ✅ Health check route
+// Health check
 router.get("/", getRootMessage);
 
-
-// ✅ Test route (temporary)
+// Test route
 router.post("/test", handleTestPost);
 
-
-// ✅ Complaint route (with validation)
-router.post(
-  "/complaints",
-  validate(createComplaintSchema),
-  createComplaint
-);
-
+// Complaint routes
+router.use("/complaints", complaintRoutes);
 
 export default router;
